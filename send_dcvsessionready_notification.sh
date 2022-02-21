@@ -1,5 +1,6 @@
 #!/bin/bash
 # send_dcvsessionready_notification.sh script to send a notification by email using AWS SNS
+echo "Send message start"
 exec 2>"/var/log/send-notification.log"
 set -x
 _msg_already_sent="/var/run/dcv_msg_sent"
@@ -18,6 +19,7 @@ Best Regards.
 while true; do
     ps -ef | grep Xdcv | grep xauth 2>&1 >/dev/null && break
     sleep 2
+    echo waiting for a dcv session
 done
 _topic_arn="$(/usr/local/bin/aws secretsmanager get-secret-value \
                                  --secret-id DCV_Session_Ready_Notification \
