@@ -1,4 +1,4 @@
-ROM amazonlinux:latest as dcv
+FROM amazonlinux:latest as dcv
 
 # Prepare the container to run systemd inside
 ENV container docker
